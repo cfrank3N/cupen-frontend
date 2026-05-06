@@ -1,13 +1,11 @@
 import MyNavBar from "./MyNavBar";
 import MyFooter from "./MyFooter";
-import FrontPageStatView from "./FrontPageStatView";
 import FeatureCards from "./FeatureCards";
 
-export default function HomePage() {
+export default function StatisticsPage() {
   return (
     <>
       <MyNavBar />
-      <FrontPageStatView />
       <FeatureCards />
       <MyFooter />
     </>
