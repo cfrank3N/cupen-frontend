@@ -4,7 +4,7 @@ function MatchResult({ matches }) {
   return (
     <Row className="mx-0">
       {matches.map((match, index) => (
-        <Card key={index} className="mb-3 shadow-sm bg-body-tertiary">
+        <Card key={index} className="border-0 mb-3 shadow-sm bg-body-tertiary">
           <Card.Body>
             <Row className="align-items-center">
               <Col md={6}>
