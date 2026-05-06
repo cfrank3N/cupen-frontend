@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import StatisticsPage from "./components/StatisticsPage";
 import AdminLogin from "./components/AdminLogin";
-import GoalsScoedByAllPlayers from "./components/GoalsScoredByAllPlayers";
+import GoalsScoredByAllPlayers from "./components/GoalsScoredByAllPlayers";
+import PlayerView from "./components/PlayerView";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/statistics/playergoals",
-    Component: GoalsScoedByAllPlayers,
+    Component: GoalsScoredByAllPlayers,
+  },
+  {
+    path: "/player/:id",
+    Component: PlayerView,
   },
 ]);
 

@@ -1,11 +1,17 @@
 import { Card, Container, Table, Spinner, Alert } from "react-bootstrap";
 import { nonAuthorizedFetch } from "../utility";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PlayerGoalsTable() {
   const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleRowClick = (playerId) => {
+    navigate(`/player/${playerId}`);
+  };
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -40,7 +46,6 @@ function PlayerGoalsTable() {
     <Container className="my-5">
       <h2 className="mb-4 text-warning fw-bold fst-italic">SKYTTELIGAN</h2>
       <Card className="rounded-3 overflow-hidden border border-warning shadow-sm">
-        {" "}
         <Table striped hover className="mb-0">
           <thead>
             <tr>
@@ -51,7 +56,11 @@ function PlayerGoalsTable() {
           </thead>
           <tbody>
             {stats.map((item, index) => (
-              <tr key={item.player.id}>
+              <tr
+                key={item.player.id}
+                onClick={() => handleRowClick(item.player.id)}
+                style={{ cursor: "pointer" }}
+              >
                 <td>{index + 1}</td>
                 <td>{item.player.name}</td>
                 <td className="text-center fw-bold fst-italic text-warning">
