@@ -6,7 +6,7 @@ const features = [
     icon: "⚽",
     title: "Skytteligan",
     desc: "Se vem som leder målskytteligan.",
-    path: "/",
+    path: "/statistics/playergoals",
   },
   {
     icon: "📊",

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import StatisticsPage from "./components/StatisticsPage";
 import AdminLogin from "./components/AdminLogin";
+import GoalsScoedByAllPlayers from "./components/GoalsScoredByAllPlayers";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/login",
     Component: AdminLogin,
+  },
+  {
+    path: "/statistics/playergoals",
+    Component: GoalsScoedByAllPlayers,
   },
 ]);
 

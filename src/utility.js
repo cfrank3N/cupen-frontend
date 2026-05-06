@@ -25,8 +25,6 @@ export async function authorizedFetch(url, options = {}) {
 }
 
 export async function nonAuthorizedFetch(url, options = {}) {
-  const jwt = localStorage.getItem("jwt");
-
   const response = await fetch(url, {
     ...options,
     headers: {
