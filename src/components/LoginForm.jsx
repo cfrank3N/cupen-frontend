@@ -4,9 +4,12 @@ import { Button, Form, Container } from "react-bootstrap";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    setLoginStatus("");
 
     try {
       const result = await fetch("http://localhost:8080/auth/login", {
@@ -17,9 +20,18 @@ function LoginForm() {
       });
 
       const data = await result.json();
-      console.log(data);
+      const message = data.message;
+
+      if (!result.ok) {
+        setLoginStatus(message);
+      }
+
+      const jwt = data.object;
+
+      localStorage.setItem("jwt", jwt);
     } catch (err) {
       console.log("Login failed", err);
+      setLoginStatus("Login failed catastrophically");
     }
   };
 
@@ -44,6 +56,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+          <Form.Text className="text-muted">{loginStatus}</Form.Text>
         </Form.Group>
         <Button variant="primary" type="submit">
           Login
