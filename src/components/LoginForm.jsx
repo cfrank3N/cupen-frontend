@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,11 +27,14 @@ function LoginForm() {
 
       if (!result.ok) {
         setLoginStatus(message);
+        return;
       }
 
       const jwt = data.object;
 
       localStorage.setItem("jwt", jwt);
+
+      navigate("/", { replace: true });
     } catch (err) {
       console.log("Login failed", err);
       setLoginStatus("Login failed catastrophically");
@@ -56,7 +62,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          <Form.Text className="text-muted">{loginStatus}</Form.Text>
+          <Form.Text className="text-danger">{loginStatus}</Form.Text>
         </Form.Group>
         <Button variant="primary" type="submit">
           Login
