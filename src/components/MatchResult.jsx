@@ -2,7 +2,7 @@ import { Card, Col, Row } from "react-bootstrap";
 
 function MatchResult({ matches }) {
   return (
-    <Row>
+    <Row className="mx-0">
       {matches.map((match, index) => (
         <Card key={index} className="mb-3 shadow-sm bg-body-tertiary">
           <Card.Body>

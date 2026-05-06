@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 function RecentMatches({ matches }) {
   return (
-    <Container className="my-4">
+    <Container className="my-4 border border-secondary rounded py-3">
       <h3 className="fw-bold">SENASTE MATCHER</h3>
       <MatchResult matches={matches} />
     </Container>

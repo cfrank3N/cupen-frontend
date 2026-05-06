@@ -6,10 +6,12 @@ function HomePageBanner() {
     <Container>
       <Row>
         <small className="text-warning mb-1">SÄSONG 2026</small>
-        <h1 className="fw-bold">
+        <h1 className="fw-bold" style={{ fontSize: "3rem" }}>
           FÖLJ <span className="text-warning fst-italic">CUPEN</span>
         </h1>
-        <h1 className="fw-bold">LIVE</h1>
+        <h1 className="fw-bold" style={{ fontSize: "3rem" }}>
+          LIVE
+        </h1>
       </Row>
       <Row>
         <p className="text-secondary">
