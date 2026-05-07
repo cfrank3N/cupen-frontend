@@ -8,6 +8,8 @@ import { Spinner, Alert } from "react-bootstrap";
 import { FormerTeams } from "./FormerTeams.jsx";
 import { SimplifiedPlayerStats } from "./SimplifiedPlayerStats.jsx";
 import StatsAgainstAllPlayers from "./StatsAgainstAllPlayers.jsx";
+import BiggestWin from "./BiggestWin.jsx";
+import BiggestLoss from "./BiggestLoss.jsx";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -47,6 +49,8 @@ export default function PlayerView() {
       <FormerTeams teams={playerStats.formerTeams} />
       <SimplifiedPlayerStats stats={playerStats.stats} />
       <StatsAgainstAllPlayers versusStats={playerStats.headToHead} />
+      <BiggestWin match={playerStats.biggestWin} />
+      <BiggestLoss match={playerStats.biggestLoss} />
       <MyFooter />
     </>
   );

@@ -27,4 +27,57 @@ function MatchResult({ matches }) {
   );
 }
 
+export function MatchResultNoList({ match }) {
+  if (!match) {
+    return null;
+  }
+
+  const dateObj = new Date(match.playedAt);
+
+  const formattedDate = dateObj.toLocaleDateString("sv-SE", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const formattedTime = dateObj.toLocaleTimeString("sv-SE", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const getTeamNames = (team) => {
+    return team.players.map((p) => p.name).join(", ");
+  };
+
+  return (
+    <Card className="border-0 mb-3 shadow-sm bg-body-tertiary">
+      <Card.Body>
+        <Row>
+          <Col className="text-start">
+            <div className="text-secondary small">
+              {formattedDate} : {formattedTime}
+            </div>
+          </Col>
+          <Col className="text-end">
+            <div className="text-warning fw-semibold">{match.matchType}</div>
+          </Col>
+        </Row>
+        <Row className="align-items-center">
+          <Col xs={5}>
+            <span className="fw-semibold">
+              {getTeamNames(match.teamA)}
+            </span>{" "}
+          </Col>
+          <Col xs={2} className="text-center">
+            <span className="fw-bold fs-4 text-warning">{match.score}</span>
+          </Col>
+          <Col xs={5} className="text-end">
+            <span className="fw-semibold">{getTeamNames(match.teamB)}</span>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  );
+}
+
 export default MatchResult;
