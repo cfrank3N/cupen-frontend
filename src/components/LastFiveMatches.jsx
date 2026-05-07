@@ -1,20 +1,23 @@
-import { Container, Card, Row } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 
 function LastFiveMatches({ matches }) {
   return (
-    <Container>
-      <Row>
+    <Container className="my-5">
+      <Row className="mb-3 border-bottom">
+        <h3 className="text-warning fw-bold fst-italic text-center">
+          FORM SENASTE 5
+        </h3>
+      </Row>
+      <Row className="d-flex align-items-center justify-content-center">
         {matches.map((match, index) => (
-          <Col key={index} xs={12}>
+          <Col key={index} xs={2}>
             <Card
-              className="border-0"
-              bg={
-                match.result === "WIN"
-                  ? "success"
+              className={`border-0 ${match.result === "WIN"
+                  ? "text-bg-success"
                   : match.result === "LOSS"
-                    ? "danger"
-                    : "warning"
-              }
+                    ? "text-bg-danger"
+                    : "text-bg-warning"
+                }`}
             >
               <Card.Body className="p-0 d-flex align-items-center justify-content-center">
                 <span className="fw-bold text-white">
@@ -32,3 +35,5 @@ function LastFiveMatches({ matches }) {
     </Container>
   );
 }
+
+export default LastFiveMatches;
