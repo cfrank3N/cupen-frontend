@@ -1,7 +1,7 @@
-import { Container, Col, Row, Table } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function FormerTeams({ teams }) {
+export function FormerTeams({ teams }) {
   const navigate = useNavigate();
   return (
     <Container className="my-5">
@@ -58,5 +58,3 @@ function FormerTeams({ teams }) {
     </Container>
   );
 }
-
-export default FormerTeams;
