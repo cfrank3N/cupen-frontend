@@ -1,12 +1,13 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
 
-function LastFiveMatches({ matches }) {
+function LastFiveMatches({ matches, playerName }) {
   return (
     <Container className="my-5">
+      <h1 className="text-center fw-bold my-5">{playerName}</h1>
       <Row className="mb-3 border-bottom">
-        <h3 className="text-warning fw-bold fst-italic text-center">
+        <h4 className="text-warning fw-bold fst-italic text-center">
           FORM SENASTE 5
-        </h3>
+        </h4>
       </Row>
       <Row className="d-flex align-items-center justify-content-center">
         {matches.map((match, index) => (

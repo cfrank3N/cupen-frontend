@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { nonAuthorizedFetch } from "../utility.js";
 import { Spinner, Alert } from "react-bootstrap";
+import { FormerTeams } from "./FormerTeams.jsx";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -37,7 +38,11 @@ export default function PlayerView() {
   return (
     <>
       <MyNavBar />
-      <LastFiveMatches matches={playerStats.lastFiveMatches} />
+      <LastFiveMatches
+        matches={playerStats.lastFiveMatches}
+        playerName={playerStats.name}
+      />
+      <FormerTeams teams={playerStats.formerTeams} />
       <MyFooter />
     </>
   );
