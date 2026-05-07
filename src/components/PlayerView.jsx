@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { nonAuthorizedFetch } from "../utility.js";
 import { Spinner, Alert } from "react-bootstrap";
 import { FormerTeams } from "./FormerTeams.jsx";
+import { SimplifiedPlayerStats } from "./SimplifiedPlayerStats.jsx";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -43,6 +44,7 @@ export default function PlayerView() {
         playerName={playerStats.name}
       />
       <FormerTeams teams={playerStats.formerTeams} />
+      <SimplifiedPlayerStats stats={playerStats.stats} />
       <MyFooter />
     </>
   );
