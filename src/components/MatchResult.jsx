@@ -29,7 +29,13 @@ function MatchResult({ matches }) {
 
 export function MatchResultNoList({ match }) {
   if (!match) {
-    return null;
+    return (
+      <div className="text-center p-4 bg-body-tertiary rounded shadow-sm border border-secondary border-opacity-25">
+        <p className="text-secondary mb-0 fst-italic">
+          Inga registrerade matcher här än
+        </p>
+      </div>
+    );
   }
 
   const dateObj = new Date(match.playedAt);
