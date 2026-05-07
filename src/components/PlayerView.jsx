@@ -7,6 +7,7 @@ import { nonAuthorizedFetch } from "../utility.js";
 import { Spinner, Alert } from "react-bootstrap";
 import { FormerTeams } from "./FormerTeams.jsx";
 import { SimplifiedPlayerStats } from "./SimplifiedPlayerStats.jsx";
+import StatsAgainstAllPlayers from "./StatsAgainstAllPlayers.jsx";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -45,6 +46,7 @@ export default function PlayerView() {
       />
       <FormerTeams teams={playerStats.formerTeams} />
       <SimplifiedPlayerStats stats={playerStats.stats} />
+      <StatsAgainstAllPlayers versusStats={playerStats.headToHead} />
       <MyFooter />
     </>
   );
