@@ -3,15 +3,11 @@ import { nonAuthorizedFetch } from "../utility";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function PlayerGoalsTable() {
+export default function PlayerGoalsTable() {
   const [stats, setStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  const handleRowClick = (playerId) => {
-    navigate(`/player/${playerId}`);
-  };
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -19,10 +15,10 @@ function PlayerGoalsTable() {
         const data = await nonAuthorizedFetch(
           "http://localhost:8080/api/statistics/goals",
         );
-
-        setStats(data.object);
+        // Map the .object array from your JSON
+        setStats(data.object || []);
       } catch (err) {
-        setError(err.message || "Something went wrong");
+        setError(err.message || "Kunde inte hämta skytteligan");
       } finally {
         setLoading(false);
       }
@@ -32,47 +28,74 @@ function PlayerGoalsTable() {
   }, []);
 
   if (loading) {
-    return <Spinner animation="border" className="m-5" />;
+    return (
+      <Container className="text-center my-5">
+        <Spinner animation="border" variant="warning" />
+      </Container>
+    );
   }
+
   if (error) {
     return (
-      <Alert variant="danger" className="m-5">
-        {error}
-      </Alert>
+      <Container className="my-5">
+        <Alert variant="danger">{error}</Alert>
+      </Container>
     );
   }
 
   return (
     <Container className="my-5">
-      <h2 className="mb-4 text-warning fw-bold fst-italic">SKYTTELIGAN</h2>
-      <Card className="rounded-3 overflow-hidden border border-warning shadow-sm">
-        <Table striped hover className="mb-0">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Spelare</th>
-              <th>Mål</th>
+      <h4 className="mb-4 text-warning fw-bold fst-italic text-center">
+        SKYTTELIGAN
+      </h4>
+      <Table
+        hover
+        responsive
+        className="marathon-table align-middle bg-white shadow-sm"
+      >
+        <thead className="border-bottom border-warning">
+          <tr className="text-uppercase small fw-bold">
+            <th className="text-center" style={{ width: "50px" }}>
+              #
+            </th>
+            <th>Spelare</th>
+            <th className="text-center text-warning fw-bold fst-italic">Mål</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stats.map((row, index) => (
+            <tr
+              key={row.player.id}
+              onClick={() => navigate(`/player/${row.player.id}`)}
+              style={{ cursor: "pointer" }}
+            >
+              <td className="text-center fw-bold text-secondary">
+                {index + 1}
+              </td>
+              <td>
+                <div className="d-flex align-items-center gap-2">
+                  <img
+                    src={row.player.imageUrl}
+                    alt={row.player.name}
+                    className="rounded-circle border border-light"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <span className="player-name-link fw-semibold">
+                    {row.player.name}
+                  </span>
+                </div>
+              </td>
+              <td className="text-center fw-bold text-warning fs-5 fst-italic">
+                {row.goals}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {stats.map((item, index) => (
-              <tr
-                key={item.player.id}
-                onClick={() => handleRowClick(item.player.id)}
-                style={{ cursor: "pointer" }}
-              >
-                <td>{index + 1}</td>
-                <td>{item.player.name}</td>
-                <td className="text-center fw-bold fst-italic text-warning">
-                  {item.goals}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Card>
+          ))}
+        </tbody>
+      </Table>
     </Container>
   );
 }
-
-export default PlayerGoalsTable;
