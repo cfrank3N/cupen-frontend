@@ -3,7 +3,12 @@ import { Container, Nav, Navbar, NavDropdown, Col } from "react-bootstrap";
 
 export default function MyNavBar() {
   return (
-    <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="bg-body-tertiary">
+    <Navbar
+      expand="lg"
+      bg="dark"
+      data-bs-theme="dark"
+      className="bg-body-tertiary"
+    >
       <Container className="sm-6">
         <Col className="d-flex justify-content-left align-items-center">
           <Navbar.Brand href="/">Cupen</Navbar.Brand>
@@ -14,7 +19,9 @@ export default function MyNavBar() {
           <Nav className="ms-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Statistik" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/">Skytteligan</NavDropdown.Item>
+              <NavDropdown.Item href="/statistics/playergoals">
+                Skytteligan
+              </NavDropdown.Item>
               <NavDropdown.Item href="/">Målligan(Lag)</NavDropdown.Item>
               <NavDropdown.Item href="/">Maratontabellen</NavDropdown.Item>
               <NavDropdown.Item href="/">Totaltabellen</NavDropdown.Item>
