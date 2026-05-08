@@ -22,8 +22,9 @@ export default function MyNavBar() {
               <NavDropdown.Item href="/statistics/playergoals">
                 Skytteligan
               </NavDropdown.Item>
-              <NavDropdown.Item href="/">Målligan(Lag)</NavDropdown.Item>
-              <NavDropdown.Item href="/">Maratontabellen</NavDropdown.Item>
+              <NavDropdown.Item href="/statistics/teamgoals">
+                Målligan(Lag)
+              </NavDropdown.Item>
               <NavDropdown.Item href="/statistics/totaltable">
                 Totaltabellen
               </NavDropdown.Item>
