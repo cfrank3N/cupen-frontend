@@ -5,6 +5,7 @@ import AdminLogin from "./components/AdminLogin";
 import GoalsScoredByAllPlayers from "./components/GoalsScoredByAllPlayers";
 import PlayerView from "./components/PlayerView";
 import PlayerMatchHistory from "./components/PlayerMatchHistory";
+import AllPlayersView from "./components/AllPlayersView";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/player/:id/matches",
     Component: PlayerMatchHistory,
+  },
+  {
+    path: "/player",
+    Component: AllPlayersView,
   },
 ]);
 

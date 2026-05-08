@@ -49,6 +49,7 @@ export default function PlayerView() {
       <LastFiveMatches
         matches={playerStats.lastFiveMatches}
         playerName={playerStats.name}
+        playerImage={playerStats.imageUrl}
       />
       <Container className="text-center mb-5">
         <Button

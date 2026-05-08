@@ -26,7 +26,7 @@ export default function MyNavBar() {
               <NavDropdown.Item href="/">Maratontabellen</NavDropdown.Item>
               <NavDropdown.Item href="/">Totaltabellen</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/">Spelare</Nav.Link>
+            <Nav.Link href="/player">Spelare</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -6,7 +6,7 @@ export default function MyFooter() {
       <Container bg="dark" data-bs-theme="dark" className="bg-body-tertiary">
         <hr />
         <div className="d-flex justify-content-between mt-4 text-secondary">
-          <a href="/contact" className="text-secondary">
+          <a href="/" className="text-secondary">
             Contact us
           </a>
           <a href="/" className="text-secondary">

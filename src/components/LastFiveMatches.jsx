@@ -1,9 +1,17 @@
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Image } from "react-bootstrap";
 
-function LastFiveMatches({ matches, playerName }) {
+function LastFiveMatches({ matches, playerName, playerImage }) {
   return (
-    <Container className="my-5">
-      <h1 className="text-center fw-bold my-5">{playerName}</h1>
+    <Container className="my-5 text-center">
+      <Image
+        src={playerImage}
+        fluid
+        style={{
+          width: "150px",
+          height: "150px",
+        }}
+      />
+      <h1 className="text-center fw-bold mb-5">{playerName}</h1>
       <Row className="mb-3 border-bottom">
         <h4 className="text-warning fw-bold fst-italic text-center">
           FORM SENASTE 5
