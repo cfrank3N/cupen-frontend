@@ -10,6 +10,7 @@ import { SimplifiedPlayerStats } from "./SimplifiedPlayerStats.jsx";
 import StatsAgainstAllPlayers from "./StatsAgainstAllPlayers.jsx";
 import BiggestWin from "./BiggestWin.jsx";
 import BiggestLoss from "./BiggestLoss.jsx";
+import MatchesAgainstPlayer from "./MatchesAgainsPlayer.jsx";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -48,9 +49,10 @@ export default function PlayerView() {
       />
       <FormerTeams teams={playerStats.formerTeams} />
       <SimplifiedPlayerStats stats={playerStats.stats} />
-      <StatsAgainstAllPlayers versusStats={playerStats.headToHead} />
+      <StatsAgainstAllPlayers versusStats={playerStats.statsAgainstAll} />
       <BiggestWin match={playerStats.biggestWin} />
       <BiggestLoss match={playerStats.biggestLoss} />
+      <MatchesAgainstPlayer currentPlayerId={id} />
       <MyFooter />
     </>
   );

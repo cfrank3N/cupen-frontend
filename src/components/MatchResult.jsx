@@ -86,4 +86,18 @@ export function MatchResultNoList({ match }) {
   );
 }
 
+export function MatchResultVersionTwo({ matches }) {
+  if (!matches || matches.length === 0) {
+    return <MatchResultNoList match={null} />;
+  }
+
+  return (
+    <div className="match-list">
+      {matches.map((m, index) => (
+        <MatchResultNoList key={m.id || index} match={m} />
+      ))}
+    </div>
+  );
+}
+
 export default MatchResult;
