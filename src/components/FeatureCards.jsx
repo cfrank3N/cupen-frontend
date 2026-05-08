@@ -18,7 +18,7 @@ const features = [
     icon: "👤",
     title: "Spelarstatistik",
     desc: "Djupdyk i en spelares hela karriär och head-to-head.",
-    path: "/",
+    path: "/player",
   },
 ];
 
