@@ -6,6 +6,7 @@ import GoalsScoredByAllPlayers from "./components/GoalsScoredByAllPlayers";
 import PlayerView from "./components/PlayerView";
 import PlayerMatchHistory from "./components/PlayerMatchHistory";
 import AllPlayersView from "./components/AllPlayersView";
+import TotalTable from "./components/TotalTable";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/player",
     Component: AllPlayersView,
+  },
+  {
+    path: "/statistics/totaltable",
+    Component: TotalTable,
   },
 ]);
 

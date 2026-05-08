@@ -10,9 +10,9 @@ const features = [
   },
   {
     icon: "📊",
-    title: "Maratontabellen",
+    title: "Totaltabellen",
     desc: "Den historiska rankningen av alla spelare.",
-    path: "/",
+    path: "/statistics/totaltable",
   },
   {
     icon: "👤",
