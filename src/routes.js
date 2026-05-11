@@ -9,6 +9,7 @@ import AllPlayersView from "./components/AllPlayersView";
 import TotalTable from "./components/TotalTable";
 import TeamGoalsTable from "./components/TeamGoalsTable";
 import AdminPage from "./components/AdminPage";
+import MatchManagementPage from "./components/MatchManagementPage";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/create",
     Component: AdminPage,
+  },
+  {
+    path: "/admin/manage-events",
+    Component: MatchManagementPage,
   },
 ]);
 
