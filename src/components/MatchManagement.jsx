@@ -18,7 +18,10 @@ export default function MatchManagement() {
   const [eventTypes, setEventTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedYear, setSelectedYear] = useState("2026");
+
+  const [selectedYear, setSelectedYear] = useState(
+    new Date().getFullYear().toString(),
+  );
   const [expandedMatchId, setExpandedMatchId] = useState(null);
 
   const fetchData = useCallback(async () => {
@@ -27,10 +30,21 @@ export default function MatchManagement() {
         nonAuthorizedFetch("http://localhost:8080/api/matches"),
         nonAuthorizedFetch("http://localhost:8080/api/matches/events/types"),
       ]);
-      setMatches(matchesData.object || []);
+
+      const allMatches = matchesData.object || [];
+      setMatches(allMatches);
       setEventTypes(eventTypesData.object || []);
+
+      if (allMatches.length > 0) {
+        const years = allMatches.map((m) =>
+          new Date(m.playedAt).getFullYear().toString(),
+        );
+        if (!years.includes(new Date().getFullYear().toString())) {
+          setSelectedYear(Math.max(...years).toString());
+        }
+      }
     } catch (err) {
-      setError("Kunde inte ladda matcher.", err.message);
+      setError("Kunde inte ladda matcher.");
     } finally {
       setLoading(false);
     }
@@ -39,6 +53,12 @@ export default function MatchManagement() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const availableYears = [
+    ...new Set(
+      matches.map((m) => new Date(m.playedAt).getFullYear().toString()),
+    ),
+  ].sort((a, b) => b - a);
 
   const filteredMatches = matches.filter(
     (m) => new Date(m.playedAt).getFullYear().toString() === selectedYear,
@@ -71,9 +91,15 @@ export default function MatchManagement() {
             onChange={(e) => setSelectedYear(e.target.value)}
             className="bg-dark text-white border-warning"
           >
-            <option value="2026">2026</option>
-            <option value="2025">2025</option>
-            <option value="2024">2024</option>
+            {availableYears.length > 0 ? (
+              availableYears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))
+            ) : (
+              <option value="">Inga år</option>
+            )}
           </Form.Select>
         </Form.Group>
       </div>
