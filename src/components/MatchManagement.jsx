@@ -10,7 +10,7 @@ import {
   Alert,
   Spinner,
 } from "react-bootstrap";
-import { nonAuthorizedFetch } from "../utility.js";
+import { authorizedFetch } from "../utility.js";
 import AddMatchEvents from "./AddMatchEvents.jsx";
 
 export default function MatchManagement() {
@@ -27,8 +27,8 @@ export default function MatchManagement() {
   const fetchData = useCallback(async () => {
     try {
       const [matchesData, eventTypesData] = await Promise.all([
-        nonAuthorizedFetch("http://localhost:8080/api/matches"),
-        nonAuthorizedFetch("http://localhost:8080/api/matches/events/types"),
+        authorizedFetch("http://localhost:8080/api/matches"),
+        authorizedFetch("http://localhost:8080/api/matches/events/types"),
       ]);
 
       const allMatches = matchesData.object || [];
