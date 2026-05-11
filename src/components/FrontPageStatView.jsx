@@ -14,9 +14,9 @@ function FrontPageStatView() {
   useEffect(() => {
     const fetchStats = async () => {
       const [playerRes, teamsRes, matchesRes] = await Promise.all([
-        fetch(`${url}/api/players`),
-        fetch(`${url}/api/teams`),
-        fetch(`${url}/api/matches`),
+        fetch(`${url}/api/statistics/players`),
+        fetch(`${url}/api/statistics/teams`),
+        fetch(`${url}/api/statistics/matches`),
       ]);
 
       const players = await playerRes.json();
