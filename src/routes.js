@@ -10,6 +10,10 @@ import TotalTable from "./components/TotalTable";
 import TeamGoalsTable from "./components/TeamGoalsTable";
 import AdminPage from "./components/AdminPage";
 import MatchManagementPage from "./components/MatchManagementPage";
+import CreatePlayersPage from "./components/CreatePlayersPage";
+import CreateTeamsPage from "./components/CreateTeamsPage";
+import CreateMatchesPage from "./components/CreateMatchesPage";
+import CreateTournamentPage from "./components/CreateTournamentPage";
 
 const router = createBrowserRouter([
   {
@@ -49,12 +53,24 @@ const router = createBrowserRouter([
     Component: TeamGoalsTable,
   },
   {
-    path: "/admin/create",
-    Component: AdminPage,
+    path: "/admin/create-tournament",
+    Component: CreateTournamentPage,
   },
   {
     path: "/admin/manage-events",
     Component: MatchManagementPage,
+  },
+  {
+    path: "/admin/create-players",
+    Component: CreatePlayersPage,
+  },
+  {
+    path: "/admin/create-teams",
+    Component: CreateTeamsPage,
+  },
+  {
+    path: "/admin/create-matches",
+    Component: CreateMatchesPage,
   },
 ]);
 

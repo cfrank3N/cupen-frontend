@@ -1,12 +1,12 @@
 import MyNavBar from "./MyNavBar";
 import MyFooter from "./MyFooter";
-import MatchManagement from "./MatchManagement";
+import CreateMatches from "./CreateMatches";
 
-export default function MatchManagementPage() {
+export default function CreateMatchesPage() {
   return (
     <>
       <MyNavBar />
-      <MatchManagement />
+      <CreateMatches />
       <MyFooter />
     </>
   );
