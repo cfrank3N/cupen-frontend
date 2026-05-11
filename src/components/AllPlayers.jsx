@@ -12,7 +12,7 @@ function AllPlayers() {
     const fetchPlayers = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/players",
+          "http://localhost:8080/api/statistics/players",
         );
         setPlayers(data.object || []);
       } catch (err) {

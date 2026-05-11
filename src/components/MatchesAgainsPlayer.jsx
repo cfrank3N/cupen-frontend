@@ -23,7 +23,7 @@ function MatchesAgainstPlayer({ currentPlayerId }) {
     const fetchPlayers = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/players",
+          "http://localhost:8080/api/statistics/players",
         );
         // Filter out the current player so they can't select themselves
         const others = data.object.filter((p) => p.id !== currentPlayerId);

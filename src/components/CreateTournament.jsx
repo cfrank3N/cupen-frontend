@@ -38,14 +38,16 @@ export default function CreateTournament() {
       style={{ minHeight: "100vh" }}
     >
       <div style={{ width: "400px" }}>
-        <h2 className="text-warning fw-bold fst-italic mb-4">ADMIN</h2>
+        <h2 className="text-warning fw-bold fst-italic mb-4">
+          SKAPA TURNERING
+        </h2>
 
         {success && <Alert variant="success">{success}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Tournament Year</Form.Label>
+            <Form.Label>Turneringens årtal</Form.Label>
             <Form.Control
               type="number"
               placeholder="e.g. 2026"
@@ -60,7 +62,7 @@ export default function CreateTournament() {
               {loading ? (
                 <Spinner animation="border" size="sm" />
               ) : (
-                "Create Tournament"
+                "Skapa turnering"
               )}
             </Button>
           </div>
