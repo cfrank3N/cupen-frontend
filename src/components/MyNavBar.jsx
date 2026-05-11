@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Nav, Navbar, NavDropdown, Col } from "react-bootstrap";
 
 export default function MyNavBar() {
+  const isLoggedIn = !!localStorage.getItem("jwt");
+
   return (
     <Navbar
       expand="lg"
@@ -30,6 +32,29 @@ export default function MyNavBar() {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/player">Spelare</Nav.Link>
+
+            {isLoggedIn && (
+              <NavDropdown
+                title={<span className="text-warning">Admin</span>}
+                id="admin-nav-dropdown"
+              >
+                <NavDropdown.Item href="/admin/create-tournament">
+                  Create Tournament
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/admin/manage-events">
+                  Manage Events
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/admin/create-players">
+                  Create Players
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/admin/create-teams">
+                  Create Teams
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/admin/create-matches">
+                  Create Matches
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

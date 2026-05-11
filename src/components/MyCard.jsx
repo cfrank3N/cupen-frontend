@@ -5,7 +5,7 @@ function MyCard({ stats }) {
     <Container>
       <Row>
         {stats.map(({ num, label }) => (
-          <Col key={label}>
+          <Col xs={8} sm={6} md={4} key={label}>
             <Card border="warning" className="stats text-center">
               <Card.Body>
                 <Card.Title className="fst-italic fw-bold fs-1 text-warning">
