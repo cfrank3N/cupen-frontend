@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { authorizedFetch, nonAuthorizedFetch } from "../utility.js";
+import { authorizedFetch } from "../utility.js";
 
 const emptyTeam = { playerIds: [] };
 
@@ -25,8 +25,8 @@ export default function CreateTeams() {
   useEffect(() => {
     const fetchData = async () => {
       const [playersData, tournamentsData] = await Promise.all([
-        nonAuthorizedFetch("http://localhost:8080/api/players"),
-        nonAuthorizedFetch("http://localhost:8080/api/tournaments"),
+        authorizedFetch("http://localhost:8080/api/players"),
+        authorizedFetch("http://localhost:8080/api/tournaments"),
       ]);
       setPlayers(playersData.object);
       setTournaments(tournamentsData.object);

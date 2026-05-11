@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Container, Alert, Form, Row, Col } from "react-bootstrap";
-import { nonAuthorizedFetch } from "../utility.js";
+import { authorizedFetch } from "../utility.js";
 import AddMatchForm from "./AddMatchForm";
 
 export default function CreateMatches() {
@@ -21,9 +21,9 @@ export default function CreateMatches() {
   const fetchData = useCallback(async () => {
     try {
       const [tourneyData, typesData, groupsData] = await Promise.all([
-        nonAuthorizedFetch("http://localhost:8080/api/tournaments"),
-        nonAuthorizedFetch("http://localhost:8080/api/matches/types"),
-        nonAuthorizedFetch("http://localhost:8080/api/matches/groups"),
+        authorizedFetch("http://localhost:8080/api/tournaments"),
+        authorizedFetch("http://localhost:8080/api/matches/types"),
+        authorizedFetch("http://localhost:8080/api/matches/groups"),
       ]);
 
       const allTournaments = tourneyData.object || [];
