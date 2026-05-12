@@ -10,6 +10,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { authorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 const emptyPlayer = {
   name: "",
@@ -52,7 +53,7 @@ export default function CreatePlayers() {
         rating: parseInt(p.rating) || 0,
       }));
 
-      await authorizedFetch("http://localhost:8080/api/players", {
+      await authorizedFetch(`${API_URL}/api/players`, {
         method: "POST",
         body: JSON.stringify(payload),
       });

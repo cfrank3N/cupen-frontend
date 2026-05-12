@@ -1,3 +1,5 @@
+import { API_URL } from "./config";
+
 export async function authorizedFetch(url, options = {}) {
   const jwt = localStorage.getItem("jwt");
 
@@ -16,7 +18,7 @@ export async function authorizedFetch(url, options = {}) {
     console.warn("JWT expired, attempting to refresh...");
 
     try {
-      const refreshRes = await fetch("http://localhost:8080/auth/refresh", {
+      const refreshRes = await fetch(`${API_URL}/auth/refresh`, {
         method: "POST",
         credentials: "include",
       });

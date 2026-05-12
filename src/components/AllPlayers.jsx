@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { nonAuthorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 function AllPlayers() {
   const [players, setPlayers] = useState([]);
@@ -12,7 +13,7 @@ function AllPlayers() {
     const fetchPlayers = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/statistics/players",
+          `${API_URL}/api/statistics/players`,
         );
         setPlayers(data.object || []);
       } catch (err) {

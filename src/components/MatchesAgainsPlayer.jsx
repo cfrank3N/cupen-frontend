@@ -2,6 +2,7 @@ import { Container, Form, Spinner, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { nonAuthorizedFetch } from "../utility";
 import { MatchResultVersionTwo } from "./MatchResult";
+import { API_URL } from "../config";
 
 function MatchesAgainstPlayer({ currentPlayerId }) {
   const [allPlayers, setAllPlayers] = useState([]);
@@ -23,7 +24,7 @@ function MatchesAgainstPlayer({ currentPlayerId }) {
     const fetchPlayers = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/statistics/players",
+          `${API_URL}/api/statistics/players`,
         );
         // Filter out the current player so they can't select themselves
         const others = data.object.filter((p) => p.id !== currentPlayerId);
@@ -46,7 +47,7 @@ function MatchesAgainstPlayer({ currentPlayerId }) {
       setLoading(true);
       try {
         const data = await nonAuthorizedFetch(
-          `http://localhost:8080/api/statistics/player/${currentPlayerId}/versus/${selectedOpponentId}`,
+          `${API_URL}/api/statistics/player/${currentPlayerId}/versus/${selectedOpponentId}`,
         );
         setH2hMatches(data.object || []);
       } catch (err) {

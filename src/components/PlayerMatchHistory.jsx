@@ -5,6 +5,7 @@ import { nonAuthorizedFetch } from "../utility.js";
 import { MatchResultVersionTwo } from "./MatchResult";
 import MyNavBar from "./MyNavBar";
 import MyFooter from "./MyFooter";
+import { API_URL } from "../config.js";
 
 export default function PlayerMatchHistory() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function PlayerMatchHistory() {
     const fetchMatches = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          `http://localhost:8080/api/statistics/player/${id}/matches`,
+          `${API_URL}/api/statistics/player/${id}/matches`,
         );
         setMatches(data.object || []);
       } catch (err) {

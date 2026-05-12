@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ function LoginForm() {
     setLoginStatus("");
 
     try {
-      const result = await fetch("http://localhost:8080/auth/login", {
+      const result = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

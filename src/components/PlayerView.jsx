@@ -12,6 +12,7 @@ import BiggestWin from "./BiggestWin.jsx";
 import BiggestLoss from "./BiggestLoss.jsx";
 import MatchesAgainstPlayer from "./MatchesAgainsPlayer.jsx";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config.js";
 
 export default function PlayerView() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ export default function PlayerView() {
     const fetchPlayerStats = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          `http://localhost:8080/api/statistics/player/${id}`,
+          `${API_URL}/api/statistics/player/${id}`,
         );
         setPlayerStats(data.object);
       } catch (err) {

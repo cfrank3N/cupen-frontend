@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { authorizedFetch } from "../utility.js";
 import AddMatchEvents from "./AddMatchEvents.jsx";
+import { API_URL } from "../config.js";
 
 export default function MatchManagement() {
   const [matches, setMatches] = useState([]);
@@ -27,8 +28,8 @@ export default function MatchManagement() {
   const fetchData = useCallback(async () => {
     try {
       const [matchesData, eventTypesData] = await Promise.all([
-        authorizedFetch("http://localhost:8080/api/matches"),
-        authorizedFetch("http://localhost:8080/api/matches/events/types"),
+        authorizedFetch(`${API_URL}/api/matches`),
+        authorizedFetch(`${API_URL}/api/matches/events/types`),
       ]);
 
       const allMatches = matchesData.object || [];
@@ -44,7 +45,7 @@ export default function MatchManagement() {
         }
       }
     } catch (err) {
-      setError("Kunde inte ladda matcher.");
+      setError("Kunde inte ladda matcher.", err.message);
     } finally {
       setLoading(false);
     }

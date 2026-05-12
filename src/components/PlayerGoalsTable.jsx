@@ -2,6 +2,7 @@ import { Card, Container, Table, Spinner, Alert } from "react-bootstrap";
 import { nonAuthorizedFetch } from "../utility";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function PlayerGoalsTable() {
   const [stats, setStats] = useState([]);
@@ -13,7 +14,7 @@ export default function PlayerGoalsTable() {
     const fetchStats = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/statistics/goals",
+          `${API_URL}/api/statistics/goals`,
         );
         // Map the .object array from your JSON
         setStats(data.object || []);

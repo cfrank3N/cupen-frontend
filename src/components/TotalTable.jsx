@@ -3,6 +3,7 @@ import MyFooter from "./MyFooter";
 import { TotalTableStats } from "./TotalTableStats";
 import { nonAuthorizedFetch } from "../utility.js";
 import { useEffect, useState } from "react";
+import { API_URL } from "../config.js";
 
 export default function TotalTable() {
   const [marathonData, setMarathonData] = useState(null);
@@ -11,7 +12,7 @@ export default function TotalTable() {
     const getMarathonStats = async () => {
       try {
         const data = await nonAuthorizedFetch(
-          "http://localhost:8080/api/statistics/marathontable",
+          `${API_URL}/api/statistics/marathontable`,
         );
         setMarathonData(data);
       } catch (err) {

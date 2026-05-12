@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
 import { authorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 export default function AddMatchEvents({
   matches,
@@ -35,7 +36,7 @@ export default function AddMatchEvents({
     e.preventDefault();
     setLoading(true);
     try {
-      await authorizedFetch("http://localhost:8080/api/matches/events", {
+      await authorizedFetch(`${API_URL}/api/matches/events`, {
         method: "POST",
         body: JSON.stringify(newEvents),
       });

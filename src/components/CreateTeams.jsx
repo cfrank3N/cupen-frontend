@@ -10,6 +10,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { authorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 const emptyTeam = { playerIds: [] };
 
@@ -25,8 +26,8 @@ export default function CreateTeams() {
   useEffect(() => {
     const fetchData = async () => {
       const [playersData, tournamentsData] = await Promise.all([
-        authorizedFetch("http://localhost:8080/api/players"),
-        authorizedFetch("http://localhost:8080/api/tournaments"),
+        authorizedFetch(`${API_URL}/api/players`),
+        authorizedFetch(`${API_URL}/api/tournaments`),
       ]);
       setPlayers(playersData.object);
       setTournaments(tournamentsData.object);
@@ -64,7 +65,7 @@ export default function CreateTeams() {
 
     try {
       const payload = teams.map((t) => ({ playerIds: t.playerIds }));
-      await authorizedFetch(`http://localhost:8080/api/teams/${tournamentId}`, {
+      await authorizedFetch(`${API_URL}/api/teams/${tournamentId}`, {
         method: "POST",
         body: JSON.stringify(payload),
       });

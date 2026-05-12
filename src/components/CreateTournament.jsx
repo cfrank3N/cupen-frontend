@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Form, Button, Alert, Spinner } from "react-bootstrap";
 import { authorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 export default function CreateTournament() {
   const [year, setYear] = useState("");
@@ -15,7 +16,7 @@ export default function CreateTournament() {
     setSuccess(null);
 
     try {
-      await authorizedFetch("http://localhost:8080/api/tournaments", {
+      await authorizedFetch(`${API_URL}/api/tournaments`, {
         method: "POST",
         body: JSON.stringify({ year: parseInt(year) }),
       });

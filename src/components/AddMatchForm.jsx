@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
 import { authorizedFetch, nonAuthorizedFetch } from "../utility.js";
+import { API_URL } from "../config.js";
 
 export default function AddMatchForm({
   teams,
@@ -34,7 +35,7 @@ export default function AddMatchForm({
         matchGroup: m.matchGroup === "" ? null : m.matchGroup,
       }));
 
-      await authorizedFetch("http://localhost:8080/api/matches", {
+      await authorizedFetch(`${API_URL}/api/matches`, {
         method: "POST",
         body: JSON.stringify(payload),
       });

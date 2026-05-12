@@ -3,20 +3,18 @@ import MyCard from "./MyCard";
 import HomePageBanner from "./HomePageBanner";
 import { Container, Row, Col } from "react-bootstrap";
 import RecentMatches from "./RecentMatches";
-import MatchResult from "./MatchResult";
+import { API_URL } from "../config";
 
 function FrontPageStatView() {
   const [stats, setStats] = useState([]);
   const [recentMatches, setRecentMatches] = useState([]);
 
-  const url = "http://localhost:8080";
-
   useEffect(() => {
     const fetchStats = async () => {
       const [playerRes, teamsRes, matchesRes] = await Promise.all([
-        fetch(`${url}/api/statistics/players`),
-        fetch(`${url}/api/statistics/teams`),
-        fetch(`${url}/api/statistics/matches`),
+        fetch(`${API_URL}/api/statistics/players`),
+        fetch(`${API_URL}/api/statistics/teams`),
+        fetch(`${API_URL}/api/statistics/matches`),
       ]);
 
       const players = await playerRes.json();
