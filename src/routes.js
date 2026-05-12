@@ -8,7 +8,6 @@ import PlayerMatchHistory from "./components/PlayerMatchHistory";
 import AllPlayersView from "./components/AllPlayersView";
 import TotalTable from "./components/TotalTable";
 import TeamGoalsTable from "./components/TeamGoalsTable";
-import AdminPage from "./components/AdminPage";
 import MatchManagementPage from "./components/MatchManagementPage";
 import CreatePlayersPage from "./components/CreatePlayersPage";
 import CreateTeamsPage from "./components/CreateTeamsPage";
