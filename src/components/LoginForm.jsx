@@ -33,7 +33,7 @@ function LoginForm() {
 
       const jwt = data.object;
 
-      localStorage.setItem("jwt", jwt);
+      sessionStorage.setItem("jwt", jwt);
 
       navigate("/", { replace: true });
     } catch (err) {

@@ -1,7 +1,7 @@
 import { API_URL } from "./config";
 
 export async function authorizedFetch(url, options = {}) {
-  const jwt = localStorage.getItem("jwt");
+  const jwt = sessionStorage.getItem("jwt");
 
   const response = await fetch(url, {
     ...options,
@@ -27,7 +27,7 @@ export async function authorizedFetch(url, options = {}) {
         const refreshData = await refreshRes.json();
         const newToken = refreshData.object;
 
-        localStorage.setItem("jwt", newToken);
+        sessionStorage.setItem("jwt", newToken);
 
         // RETRY the original request with the new token
         return await authorizedFetch(url, {
@@ -60,7 +60,7 @@ export async function authorizedFetch(url, options = {}) {
 }
 
 function handleAuthFailure() {
-  localStorage.removeItem("jwt");
+  sessionStorage.removeItem("jwt");
   window.location.href = "/";
 }
 

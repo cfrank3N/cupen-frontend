@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Nav, Navbar, NavDropdown, Col } from "react-bootstrap";
 
 export default function MyNavBar() {
-  const isLoggedIn = !!localStorage.getItem("jwt");
+  const isLoggedIn = !!sessionStorage.getItem("jwt");
 
   return (
     <Navbar
