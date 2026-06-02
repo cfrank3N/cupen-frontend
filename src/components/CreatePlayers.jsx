@@ -15,8 +15,9 @@ import { API_URL } from "../config.js";
 const emptyPlayer = {
   name: "",
   city: "",
-  imageUrl:
-    "https://res.cloudinary.com/drrwrnzjk/image/upload/q_auto/f_auto/v1778501418/standard-player_rhgbal.avif",
+  pricemoney: "",
+  rating: "",
+  image: null, 
 };
 
 export default function CreatePlayers() {
@@ -27,13 +28,14 @@ export default function CreatePlayers() {
 
   const handleChange = (index, field, value) => {
     setPlayers((prev) =>
-      prev.map((player, i) =>
-        i === index ? { ...player, [field]: value } : player,
-      ),
+      prev.map((p, i) =>
+        i === index ? { ...p, [field]: value } : p
+      )
     );
   };
 
-  const addPlayer = () => setPlayers((prev) => [...prev, { ...emptyPlayer }]);
+  const addPlayer = () =>
+    setPlayers((prev) => [...prev, { ...emptyPlayer }]);
 
   const removePlayer = (index) => {
     if (players.length === 1) return;
@@ -47,16 +49,23 @@ export default function CreatePlayers() {
     setSuccess(null);
 
     try {
-      const payload = players.map((p) => ({
-        ...p,
-        pricemoney: parseInt(p.pricemoney) || 0,
-        rating: parseInt(p.rating) || 0,
-      }));
+      for (const p of players) {
+        const formData = new FormData();
 
-      await authorizedFetch(`${API_URL}/api/players`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-      });
+        formData.append("name", p.name);
+        formData.append("city", p.city);
+        formData.append("pricemoney", p.pricemoney || 0);
+        formData.append("rating", p.rating || 0);
+
+        if (p.image) {
+          formData.append("image", p.image);
+        }
+
+        await authorizedFetch(`${API_URL}/api/players`, {
+          method: "POST",
+          body: formData,
+        });
+      }
 
       setSuccess(`${players.length} player(s) created!`);
       setPlayers([{ ...emptyPlayer }]);
@@ -73,7 +82,9 @@ export default function CreatePlayers() {
 
   return (
     <Container className="my-5">
-      <h2 className="text-warning fw-bold fst-italic mb-4">SKAPA SPELARE</h2>
+      <h2 className="text-warning fw-bold fst-italic mb-4">
+        SKAPA SPELARE
+      </h2>
 
       {success && <Alert variant="success">{success}</Alert>}
       {error && <Alert variant="danger">{error}</Alert>}
@@ -82,10 +93,11 @@ export default function CreatePlayers() {
         {players.map((player, index) => (
           <Card key={index} className="mb-3 bg-body-tertiary border-0">
             <Card.Body>
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="d-flex justify-content-between mb-3">
                 <span className="fw-semibold text-warning">
                   Spelare {index + 1}
                 </span>
+
                 {players.length > 1 && (
                   <Button
                     variant="outline-danger"
@@ -96,6 +108,7 @@ export default function CreatePlayers() {
                   </Button>
                 )}
               </div>
+
               <Row className="g-3">
                 <Col md={6}>
                   <Form.Control
@@ -107,6 +120,7 @@ export default function CreatePlayers() {
                     required
                   />
                 </Col>
+
                 <Col md={6}>
                   <Form.Control
                     placeholder="Stad"
@@ -116,12 +130,32 @@ export default function CreatePlayers() {
                     }
                   />
                 </Col>
+
                 <Col md={4}>
                   <Form.Control
-                    placeholder="Bild URL"
-                    value={player.imageUrl}
+                    placeholder="Pris"
+                    value={player.pricemoney}
                     onChange={(e) =>
-                      handleChange(index, "imageUrl", e.target.value)
+                      handleChange(index, "pricemoney", e.target.value)
+                    }
+                  />
+                </Col>
+
+                <Col md={4}>
+                  <Form.Control
+                    placeholder="Rating"
+                    value={player.rating}
+                    onChange={(e) =>
+                      handleChange(index, "rating", e.target.value)
+                    }
+                  />
+                </Col>
+
+                <Col md={4}>
+                  <Form.Control
+                    type="file"
+                    onChange={(e) =>
+                      handleChange(index, "image", e.target.files[0])
                     }
                   />
                 </Col>
@@ -134,6 +168,7 @@ export default function CreatePlayers() {
           <Button variant="outline-warning" onClick={addPlayer}>
             + Lägg till spelare
           </Button>
+
           <Button variant="warning" type="submit" disabled={loading}>
             {loading ? (
               <Spinner animation="border" size="sm" />

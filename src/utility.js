@@ -3,15 +3,23 @@ import { API_URL } from "./config";
 export async function authorizedFetch(url, options = {}) {
   const jwt = sessionStorage.getItem("jwt");
 
+  const isFormData = options.body instanceof FormData;
+
+  const headers = {
+    ...options.headers,
+    Authorization: `Bearer ${jwt}`,
+  };
+
+  if (!isFormData) {
+    headers["Content-Type"] = "application/json";
+  }
+
   const response = await fetch(url, {
     ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-      Authorization: `Bearer ${jwt}`,
-    },
+    headers,
     credentials: "include",
-  });
+    }
+  );
 
   // If the request fails with 401, try to refresh
   if (response.status === 401) {
