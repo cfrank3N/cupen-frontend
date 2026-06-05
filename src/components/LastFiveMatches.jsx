@@ -1,6 +1,6 @@
 import { Container, Card, Row, Col, Image } from "react-bootstrap";
 
-function LastFiveMatches({ matches, playerName, playerImage }) {
+function LastFiveMatches({ matches, playerName, playerImage, rating }) {
   return (
     <Container className="my-5 text-center">
       <Image
@@ -12,6 +12,7 @@ function LastFiveMatches({ matches, playerName, playerImage }) {
         }}
       />
       <h1 className="text-center fw-bold mb-5">{playerName}</h1>
+      <h1 className="mb-5 fw-bold fst-italic text-secondary">{rating}</h1>
       <Row className="mb-3 border-bottom">
         <h4 className="text-warning fw-bold fst-italic text-center">
           FORM SENASTE 5
