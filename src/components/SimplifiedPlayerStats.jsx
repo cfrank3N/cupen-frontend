@@ -14,6 +14,7 @@ export function SimplifiedPlayerStats({ stats }) {
             <th>O</th>
             <th>F</th>
             <th>MS</th>
+            <th>Titles</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@ export function SimplifiedPlayerStats({ stats }) {
             <td>{stats.drawnMatches}</td>
             <td>{stats.lostMatches}</td>
             <td>{stats.goalDifference}</td>
+            <td>{stats.titles}</td>
           </tr>
         </tbody>
       </Table>
