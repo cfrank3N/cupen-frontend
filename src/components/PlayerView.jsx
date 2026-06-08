@@ -11,6 +11,7 @@ import StatsAgainstAllPlayers from "./StatsAgainstAllPlayers.jsx";
 import BiggestWin from "./BiggestWin.jsx";
 import BiggestLoss from "./BiggestLoss.jsx";
 import MatchesAgainstPlayer from "./MatchesAgainsPlayer.jsx";
+import PlayerCard from "./PlayerCard.jsx";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config.js";
 
@@ -47,11 +48,14 @@ export default function PlayerView() {
   return (
     <>
       <MyNavBar />
+      <PlayerCard
+        rating={playerStats.rating}
+        playerImage={playerStats.imageUrl}
+        playerName={playerStats.name}
+        playedMatches={playerStats.stats.playedMatches}
+      />
       <LastFiveMatches
         matches={playerStats.lastFiveMatches}
-        playerName={playerStats.name}
-        playerImage={playerStats.imageUrl}
-        rating={playerStats.rating}
       />
       <Container className="text-center mb-5">
         <Button
