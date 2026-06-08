@@ -55,15 +55,10 @@ function AllPlayers() {
                 <span className="fw-bold fst-italic text-secondary">Rating</span>
                 <h1 className="fw-bold fst-italic text-secondary text-end">{player.rating}</h1>
               </Card.Header>
-              <Card.Img 
-                style={{
-                  maxHeight: "180px",
-                  objectFit: "contain"
-                }}
-                className="mx-auto my-2 d-block w-75" variant="top" alt="Card image" src={player.imageUrl} />
+              <Card.Img className="mx-auto my-2 d-block w-75" variant="top" alt="Card image" src={player.playerImage} />
               <Card.Body className="border-top">
-                <Card.Title className="text-center fw-bold">
-                  {player.name}               
+                <Card.Title>
+                  <h4 className="text-center fw-bold">{player.name}</h4>
                 </Card.Title>
               </Card.Body>
               <Card.Footer className="text-center fst-italic">
